@@ -38,7 +38,12 @@ def generate_config(repo_path: Path, config: dict):
     repo_name = repo_path.name
     config_path = repo_path / "_config.yml"
 
-    # 既存ファイルは上書きする
+    # 既存の_config.ymlが1024バイト以上の場合はスキップ
+    if config_path.exists():
+        file_size = config_path.stat().st_size
+        if file_size >= 1024:
+            print(f"⏭️  {repo_name}: _config.ymlが1024バイト以上のためスキップしました ({file_size}バイト)")
+            return False
 
     # descriptionの処理
     description = config["description_template"].format(repo_name=repo_name)
