@@ -1,48 +1,50 @@
-Last updated: 2025-11-11
+Last updated: 2025-12-02
 
 # Development Status
 
 ## 現在のIssues
-現在オープン中のIssueはありません。
+- 現在オープン中のIssueはありません。
+- プロジェクトは安定した状態にあり、具体的な問題は報告されていません。
+- 新しい機能開発や既存機能の改善に向けた次のステップを検討する段階です。
 
 ## 次の一手候補
-1.  プロジェクトの自動生成ドキュメント (`development-status.md`) のプロンプト改善
-    -   最初の小さな一歩: 現在の `development-status-prompt.md` の内容を確認し、Issueが存在しない場合の記述や、より詳細な情報取得の可能性について分析する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md
+1. 自動生成される開発状況レポートの精度向上 (T-1)
+   - 最初の小さな一歩: `.github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md`の内容をレビューし、現在生成されている`generated-docs/development-status.md`が開発者にとって最も有用な情報を提供しているか評価する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: .github/actions-tmp/.github_automation/project_summary/prompts/development-status-prompt.md および generated-docs/development-status.md
 
-        実行内容: 現在の `development-status-prompt.md` の内容を分析し、Issueが存在しない場合の振る舞いや、プロジェクトの健全性を示す指標（例: 最近のコミット数、未レビューのPR数など）を追加する観点から、改善提案をmarkdown形式で出力してください。
+     実行内容: 対象ファイルの内容を分析し、現在の`generated-docs/development-status.md`の出力結果と比較して、レポートの有用性、具体性、開発者が次に取るべきアクションの明確さの観点から改善点を提案してください。特に「次の小さな一歩」と「Agent実行プロンプト」がより具体的で実行しやすいものになるよう、プロンプト自体をどのように修正すべきかを検討してください。
 
-        確認事項: 現在のプロンプトの意図、および `DevelopmentStatusGenerator.cjs` との連携を考慮し、生成される `development-status.md` の出力形式が維持されることを確認してください。
+     確認事項: 現在の`development-status-prompt.md`がどのように`.github/actions-tmp/.github_automation/project_summary/scripts/development/DevelopmentStatusGenerator.cjs`によって利用されているか、そのスクリプトとの整合性を確認してください。
 
-        期待する出力: 改善提案を盛り込んだ新しい `development-status-prompt.md` の内容（markdown形式）と、提案に至った理由の説明。
-        ```
+     期待する出力: `development-status-prompt.md`を改善するための具体的な修正案をMarkdown形式で提案してください。必要であれば、改善されたプロンプトの全文を含めてください。
+     ```
 
-2.  `.github/actions-tmp/` ディレクトリの役割と管理方法の検討
-    -   最初の小さな一歩: `.github/actions-tmp/` ディレクトリに存在するファイル群（特にGitHub Actionsワークフローやスクリプト）の目的を調査し、なぜこの構造になっているのかを推測する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: .github/actions-tmp/ 以下の全ファイル（特に .github/actions-tmp/.github/workflows/ と .github/actions-tmp/.github_automation/）
+2. GitHub Actionsのワークフローの一貫性検証と整理 (T-2)
+   - 最初の小さな一歩: 主要な`.github/workflows`ディレクトリ内の`.yml`ファイルと`.github/actions-tmp/.github/workflows`ディレクトリ内の対応する`.yml`ファイルを比較し、機能的な重複や潜在的な不整合がないか確認する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: .github/workflows/*.yml および .github/actions-tmp/.github/workflows/*.yml
 
-        実行内容: `.github/actions-tmp/` ディレクトリ配下のファイル群の役割と、このディレクトリにファイルが配置されている理由（例: サブモジュール、一時的なビルド成果物、外部アクションのキャッシュなど）を推測し、その仮説をmarkdown形式で出力してください。
+     実行内容: これらのファイル群を分析し、特に`call-daily-project-summary.yml`, `call-issue-note.yml`, `call-translate-readme.yml`について、ルートディレクトリと`actions-tmp`ディレクトリ間での機能的な重複、バージョン不一致、あるいはリファクタリングの機会を洗い出してください。将来的には、`actions-tmp`配下のファイルをモジュールとして利用する構造を考慮し、全体的な整合性や見通しを向上させる提案をしてください。
 
-        確認事項: ルートディレクトリの `.github/workflows/` との関連性、`package.json` や `_config.yml` などの設定ファイルから、これらのファイルがどのように利用されているかを確認してください。
+     確認事項: 各ワークフローが依存しているスクリプトファイル（例: `.github/actions-tmp/.github_automation/project_summary/scripts/ProjectSummaryCoordinator.cjs`など）との整合性も考慮に入れてください。
 
-        期待する出力: `.github/actions-tmp/` の目的と、そこに含まれる主要なサブディレクトリ（`workflows`, `.github_automation` など）の役割に関する分析結果をmarkdown形式で出力してください。
-        ```
+     期待する出力: 検出された重複や不整合、リファクタリングの機会をまとめたMarkdown形式のレポートと、改善のための具体的な推奨事項（例：ファイル移動、内容の同期、共通アクションの作成など）を提案してください。
+     ```
 
-3.  既存のREADMEドキュメントの統合と整備
-    -   最初の小さな一歩: ルートディレクトリと `.github/actions-tmp/` ディレクトリにある `README.md` および `README.ja.md` の内容を比較し、差分と重複を特定する。
-    -   Agent実行プロンプト:
-        ```
-        対象ファイル: README.md, README.ja.md, .github/actions-tmp/README.md, .github/actions-tmp/README.ja.md
+3. `src/cat_jekyll_config_generator.py`へのJekyllプラグイン設定機能の追加 (T-3)
+   - 最初の小さな一歩: `src/cat_jekyll_config_generator.py`の現在の機能をレビューし、Jekyllの`_config.yml`にカスタムプラグイン（例: `jekyll-feed`, `jekyll-sitemap`）の設定を追加する機能がどのように実装可能か、または既存の機能と統合可能か調査する。
+   - Agent実行プロンプト:
+     ```
+     対象ファイル: src/cat_jekyll_config_generator.py, tests/test_cat_jekyll_config_generator.py, examples/config_example.toml
 
-        実行内容: 上記4つのREADMEファイルを比較し、内容の重複、情報の陳腐化、または矛盾点を特定してください。主要な違いと、それらがどの程度統合されるべきか、あるいは独立して存在すべきかを分析し、整理に関する提案をmarkdown形式で出力してください。
+     実行内容: `src/cat_jekyll_config_generator.py`が現在生成しているJekyllの設定項目を分析し、Jekyllプロジェクトで一般的に利用されるプラグイン（例: `jekyll-feed`, `jekyll-sitemap`）を`_config.yml`に追加するための新しいCLIオプションまたはTOML設定オプションを設計してください。これに伴い、テストケース`tests/test_cat_jekyll_config_generator.py`に新しい機能に対するテストを追加する方法も考慮に入れてください。
 
-        確認事項: 各READMEが意図する読者層や、提供すべき情報範囲が異なる可能性を考慮してください。特に `.github/actions-tmp/` 内のREADMEが何を説明しているのかを明確にしてください。
+     確認事項: 既存の機能との互換性、および`_config.yml`の構造への影響を確認してください。
 
-        期待する出力: 比較分析の結果をmarkdown形式で出力し、ドキュメントの統合または整理に関する具体的な提案（例: ルートREADMEへの情報集約、特定のREADMEの削除/アーカイブ、特定のREADMEの役割の明確化）を記述してください。
+     期待する出力: 新しい機能の設計概要（CLIオプション、TOML設定の例）、`cat_jekyll_config_generator.py`への変更点の提案、および追加すべきテストケースの概要をMarkdown形式で提示してください。
 
 ---
-Generated at: 2025-11-11 00:20:12 JST
+Generated at: 2025-12-02 07:02:03 JST

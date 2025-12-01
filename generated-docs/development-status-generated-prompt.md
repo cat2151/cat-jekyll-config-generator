@@ -1,4 +1,4 @@
-Last updated: 2025-11-10
+Last updated: 2025-12-02
 
 # 開発状況生成プロンプト（開発者向け）
 
@@ -162,6 +162,7 @@ Last updated: 2025-11-10
 - .github/actions-tmp/generated-docs/project-overview-generated-prompt.md
 - .github/actions-tmp/generated-docs/project-overview.md
 - .github/actions-tmp/generated-docs/style.css
+- .github/actions-tmp/googled947dc864c270e07.html
 - .github/actions-tmp/issue-notes/10.md
 - .github/actions-tmp/issue-notes/11.md
 - .github/actions-tmp/issue-notes/12.md
@@ -203,6 +204,7 @@ Last updated: 2025-11-10
 - _config.yml
 - examples/config_example.toml
 - generated-docs/project-overview-generated-prompt.md
+- googled947dc864c270e07.html
 - pytest.ini
 - ruff.toml
 - src/cat_jekyll_config_generator.py
@@ -217,11 +219,25 @@ Last updated: 2025-11-10
 
 ## 最近の変更（過去7日間）
 ### コミット履歴:
-
+0f72024 Google検索にindexさせる用
+ff99a63 Google検索にindexさせる用
 
 ### 変更されたファイル:
-
+.github/copilot-instructions.md
+.github/workflows/call-daily-project-summary.yml
+.github/workflows/call-issue-note.yml
+.github/workflows/call-translate-readme.yml
+README.md
+_config.yml
+generated-docs/development-status-generated-prompt.md
+generated-docs/development-status.md
+generated-docs/project-overview-generated-prompt.md
+generated-docs/project-overview.md
+googled947dc864c270e07.html
+src/cat_jekyll_config_generator.py
+tests/__init__.py
+tests/test_cat_jekyll_config_generator.py
 
 
 ---
-Generated at: 2025-11-10 23:15:48 JST
+Generated at: 2025-12-02 07:01:44 JST

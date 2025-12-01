@@ -1,4 +1,4 @@
-Last updated: 2025-11-10
+Last updated: 2025-12-02
 
 
 # プロジェクト概要生成プロンプト（来訪者向け）
@@ -180,6 +180,7 @@ MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照してください
 📁 examples/
   📄 config_example.toml
 📁 generated-docs/
+🌐 googled947dc864c270e07.html
 📄 pytest.ini
 📄 ruff.toml
 📁 src/
@@ -189,7 +190,9 @@ MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照してください
   📄 test_cat_jekyll_config_generator.py
 
 ## ファイル詳細分析
-
+**googled947dc864c270e07.html** (1行, 53バイト)
+  - 関数: なし
+  - インポート: なし
 
 ## 関数呼び出し階層
 関数呼び出し階層を分析できませんでした
@@ -197,6 +200,7 @@ MIT License - 詳細は[LICENSE](LICENSE)ファイルを参照してください
 ## プロジェクト構造（ファイル一覧）
 .vscode/settings.json
 README.md
+googled947dc864c270e07.html
 
 上記の情報を基に、プロンプトで指定された形式でプロジェクト概要を生成してください。
 特に以下の点を重視してください：
@@ -208,4 +212,4 @@ README.md
 
 
 ---
-Generated at: 2025-11-10 23:15:48 JST
+Generated at: 2025-12-02 07:01:44 JST
